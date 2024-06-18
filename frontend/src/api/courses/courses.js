@@ -1,9 +1,10 @@
 import { base_url } from "../../constants/constant";
 import axios from "axios";
+import axiosInstance from "../axiosConfig/axiosConfig";
 
 export const getCourses = async (token) => {
   try {
-    const response = await axios.get(`${base_url}/course`, {
+    const response = await axiosInstance.get(`${base_url}/course`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

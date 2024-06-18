@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Courses } from "./Courses";
 import { getCourses } from "../../api/courses/courses";
 import { useSelector } from "react-redux";
-import { NothingHerePage } from "../../components/NothingHerePage";
+import { NothingHerePage } from "../../components/NothingHerePage/NothingHerePage";
 
 export const CoursesContainer = () => {
   const [courses, setCourses] = useState([]);
@@ -16,7 +16,7 @@ export const CoursesContainer = () => {
       setCourses(res.data);
     }
   };
-  return courses.length < 0 ? (
+  return courses.length > 0 ? (
     <Courses courses={courses} />
   ) : (
     <NothingHerePage />
