@@ -1,8 +1,22 @@
 const Enrollment = require("../models/enrollment");
+const Student = require("../models/student");
 
 const addEnrollment = async (req, res) => {
   try {
     const enrollment = new Enrollment(req.body);
+    const student = await Student.findById(req.body.student);
+    if (!student) {
+      return res.status(404).send("Student not found");
+    } else {
+      const studentObj = {
+        studentId: student.studentId,
+        name: student.name,
+        email: student.email,
+        enrolledCourses: [...student.enrolledCourses, req.body.course],
+      };
+      await Student.findByIdAndUpdate(req.body.student, studentObj);
+    }
+
     await enrollment.save();
     res.status(201).send(enrollment);
   } catch (err) {
@@ -42,6 +56,20 @@ const updateEnrollment = async (req, res) => {
 const deleteEnrollment = async (req, res) => {
   try {
     const enrollment = await Enrollment.findByIdAndDelete(req.params.id);
+    const student = await Student.findById(enrollment.student);
+    if (!student) {
+      return res.status(404).send("Student not found");
+    } else {
+      const studentObj = {
+        studentId: student.studentId,
+        name: student.name,
+        email: student.email,
+        enrolledCourses: student.enrolledCourses.filter(
+          (item) => item !== enrollment.course
+        ),
+      };
+      await Student.findByIdAndUpdate(enrollment.student, studentObj);
+    }
     if (!enrollment) {
       return res.status(404).send("Enrollment not found");
     }

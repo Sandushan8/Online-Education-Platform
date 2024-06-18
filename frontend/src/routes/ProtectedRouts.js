@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Layout } from "../app/layout/Layout";
 import { CoursesContainer } from "../app/courses/CoursesContainer";
 import { EnrollmentContainer } from "../app/enrollment/EnrollmentContainer";
+import { StudentContainer } from "../app/student/StudentContainer";
 
 export const ProtectedRoutes = () => {
   const {
@@ -34,6 +35,14 @@ export const ProtectedRoutes = () => {
             element={
               <Layout>
                 <EnrollmentContainer />
+              </Layout>
+            }
+          ></Route>
+          <Route
+            path="/students"
+            element={
+              <Layout>
+                <StudentContainer />
               </Layout>
             }
           ></Route>

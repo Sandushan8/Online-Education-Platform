@@ -1,5 +1,5 @@
 const Student = require("../models/student");
-
+const User = require("../models/user");
 const addStudent = async (req, res) => {
   try {
     const student = new Student(req.body);
@@ -37,60 +37,13 @@ const updateStudent = async (req, res) => {
   }
 };
 
-const enrollStudent = async (req, res) => {
-  const { courseId } = req.body;
-  try {
-    const studentVal = await Student.findById(req.params.id);
-    if (!studentVal) {
-      return res.status(404).send("Student not found");
-    }
-    const studentObj = {
-      studentId: studentVal.studentId,
-      name: studentVal.name,
-      email: studentVal.email,
-      enrolledCourses: [...studentVal.enrolledCourses, courseId],
-    };
-    const student = await Student.findByIdAndUpdate(req.params.id, studentObj);
-    if (!student) {
-      return res.status(404).send("Student not found");
-    }
-    res.status(200).send(student);
-  } catch (err) {
-    res.status(400).send(err);
-  }
-};
-
-const removeEnrollment = async (req, res) => {
-  const { courseId, enrollmentId } = req.body;
-  try {
-    const studentVal = await Student.findById(req.params.id);
-    if (!studentVal) {
-      return res.status(404).send("Student not found");
-    }
-    const updatedEnrolledCourses = studentVal.enrolledCourses.filter(
-      (enrollment) => enrollment !== enrollmentId
-    );
-    const studentObj = {
-      studentId: studentVal.studentId,
-      name: studentVal.name,
-      email: studentVal.email,
-      enrolledCourses: updatedEnrolledCourses,
-    };
-    const student = await Student.findByIdAndUpdate(req.params.id, studentObj);
-    if (!student) {
-      return res.status(404).send("Student not found");
-    }
-  } catch (err) {
-    res.status(400).send(err);
-  }
-};
-
 const deleteStudent = async (req, res) => {
   try {
     const student = await Student.findByIdAndDelete(req.params.id);
     if (!student) {
       return res.status(404).send("Student not found");
     }
+    await User.findByIdAndDelete(student.studentId);
     res.status(200).send(student);
   } catch (err) {
     res.status(400).send(err);
@@ -103,6 +56,4 @@ module.exports = {
   getAllStudent,
   updateStudent,
   deleteStudent,
-  enrollStudent,
-  removeEnrollment,
 };

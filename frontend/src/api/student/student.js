@@ -1,7 +1,7 @@
 import { base_url } from "../../constants/constant";
 import axiosInstance from "../axiosConfig/axiosConfig";
 
-export const getStudents = async (token) => {
+export const getStudents = async () => {
   try {
     const response = await axiosInstance.get(`${base_url}/student`);
     return response;
@@ -11,7 +11,7 @@ export const getStudents = async (token) => {
   }
 };
 
-export const getStudentById = async (token, id) => {
+export const getStudentById = async (id) => {
   try {
     const response = await axiosInstance.get(`${base_url}/student/${id}`);
     return response;
@@ -21,8 +21,7 @@ export const getStudentById = async (token, id) => {
   }
 };
 
-export const addStudent = async (token, student) => {
-  console.log("student", token);
+export const addStudent = async (student) => {
   try {
     const response = await axiosInstance.post(`${base_url}/student`, student);
     return response;
@@ -32,7 +31,7 @@ export const addStudent = async (token, student) => {
   }
 };
 
-export const updateStudent = async (token, id, student) => {
+export const updateStudent = async (id, student) => {
   try {
     const response = await axiosInstance.put(
       `${base_url}/student/${id}`,
@@ -45,7 +44,7 @@ export const updateStudent = async (token, id, student) => {
   }
 };
 
-export const deleteStudent = async (token, id) => {
+export const deleteStudent = async (id) => {
   try {
     const response = await axiosInstance.delete(`${base_url}/student/${id}`);
     return response;

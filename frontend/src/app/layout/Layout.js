@@ -16,6 +16,13 @@ export const Layout = ({ children }) => {
       isActive: location.pathname === "/home",
     },
     {
+      name: "Students",
+      action: () => {
+        navigate("/students");
+      },
+      isActive: location.pathname === "/students",
+    },
+    {
       name: "Courses",
       action: () => {
         navigate("/courses");
