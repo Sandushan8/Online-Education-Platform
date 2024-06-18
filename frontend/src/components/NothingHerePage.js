@@ -1,7 +1,8 @@
+import { styles } from "./NothingHerePage.styles";
 export const NothingHerePage = () => {
   return (
-    <div>
-      <h1>Nothing Here</h1>
+    <div style={styles.container}>
+      <h1 style={styles.text}>Nothing Here</h1>
     </div>
   );
 };

@@ -16,7 +16,7 @@ export const CoursesContainer = () => {
       setCourses(res.data);
     }
   };
-  return courses.length > 0 ? (
+  return courses.length < 0 ? (
     <Courses courses={courses} />
   ) : (
     <NothingHerePage />

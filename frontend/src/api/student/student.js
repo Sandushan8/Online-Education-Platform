@@ -30,6 +30,7 @@ export const getStudentById = async (token, id) => {
 };
 
 export const addStudent = async (token, student) => {
+  console.log("student", token);
   try {
     const response = await axios.post(`${base_url}/student`, student, {
       headers: {

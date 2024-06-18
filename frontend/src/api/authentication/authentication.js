@@ -6,6 +6,7 @@ export const login = async ({ name, password }) => {
     const response = await axios.post(`${base_url}/login`, {
       username: name,
       password,
+      role: "student",
     });
     return response;
   } catch (error) {

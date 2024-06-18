@@ -13,7 +13,17 @@ const register = async (req, res) => {
     }
     const user = new User(userObj);
     await user.save();
-    res.status(201).send(user);
+    const tokenObj = {
+      name: user.username,
+      role: user.role,
+    };
+    const token = jwt.sign(tokenObj, process.env.JWT_SECRET, {
+      expiresIn: "2h",
+    });
+    res.status(201).send({
+      token,
+      user: { username: user.username, role: user.role, uuid: user._id },
+    });
   } catch (error) {
     res.status(400).send(error);
   }
