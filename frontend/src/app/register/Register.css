@@ -1,0 +1,5 @@
+b.register:hover,
+b.register:active {
+  color: rgb(38, 225, 194);
+  cursor: pointer;
+}

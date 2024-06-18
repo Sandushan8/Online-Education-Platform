@@ -3,3 +3,11 @@ p.nav:active {
   color: white;
   cursor: pointer;
 }
+p.nav {
+  color: #352424;
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+}

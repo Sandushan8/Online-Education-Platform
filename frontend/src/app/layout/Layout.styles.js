@@ -2,8 +2,8 @@ export const styles = {
   topBar: {
     backgroundColor: "lightblue",
     display: "flex",
-    gap: 8,
-    padding: 8,
+    gap: 10,
+    padding: 20,
     justifyContent: "right",
   },
   item: {

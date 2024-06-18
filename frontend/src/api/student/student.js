@@ -1,13 +1,9 @@
 import { base_url } from "../../constants/constant";
-import axios from "axios";
+import axiosInstance from "../axiosConfig/axiosConfig";
 
 export const getStudents = async (token) => {
   try {
-    const response = await axios.get(`${base_url}/student`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axiosInstance.get(`${base_url}/student`);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -17,11 +13,7 @@ export const getStudents = async (token) => {
 
 export const getStudentById = async (token, id) => {
   try {
-    const response = await axios.get(`${base_url}/student/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axiosInstance.get(`${base_url}/student/${id}`);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -32,11 +24,7 @@ export const getStudentById = async (token, id) => {
 export const addStudent = async (token, student) => {
   console.log("student", token);
   try {
-    const response = await axios.post(`${base_url}/student`, student, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axiosInstance.post(`${base_url}/student`, student);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -46,11 +34,10 @@ export const addStudent = async (token, student) => {
 
 export const updateStudent = async (token, id, student) => {
   try {
-    const response = await axios.put(`${base_url}/student/${id}`, student, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axiosInstance.put(
+      `${base_url}/student/${id}`,
+      student
+    );
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -60,11 +47,7 @@ export const updateStudent = async (token, id, student) => {
 
 export const deleteStudent = async (token, id) => {
   try {
-    const response = await axios.delete(`${base_url}/student/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axiosInstance.delete(`${base_url}/student/${id}`);
     return response;
   } catch (error) {
     console.log("eerr", error);

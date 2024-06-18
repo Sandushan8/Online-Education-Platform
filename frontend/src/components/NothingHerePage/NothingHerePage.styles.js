@@ -4,6 +4,7 @@ export const styles = {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
+    flexDirection: "column",
   },
   text: {
     fontSize: 64,

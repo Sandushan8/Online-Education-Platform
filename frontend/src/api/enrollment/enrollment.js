@@ -1,13 +1,9 @@
 import { base_url } from "../../constants/constant";
-import axios from "axios";
+import axiosInstance from "../axiosConfig/axiosConfig";
 
-export const getEnrollment = async (token) => {
+export const getEnrollment = async () => {
   try {
-    const response = await axios.get(`${base_url}/enrollment`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axiosInstance.get(`${base_url}/enrollment`);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -15,30 +11,11 @@ export const getEnrollment = async (token) => {
   }
 };
 
-export const addEnrollment = async (token, enrollment) => {
+export const addEnrollment = async (enrollment) => {
   try {
-    const response = await axios.post(`${base_url}/enrollment`, enrollment, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response;
-  } catch (error) {
-    console.log("eerr", error);
-    return error;
-  }
-};
-
-export const updateEnrollment = async (token, id, enrollment) => {
-  try {
-    const response = await axios.put(
-      `${base_url}/enrollment/${id}`,
-      enrollment,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+    const response = await axiosInstance.post(
+      `${base_url}/enrollment`,
+      enrollment
     );
     return response;
   } catch (error) {
@@ -47,13 +24,22 @@ export const updateEnrollment = async (token, id, enrollment) => {
   }
 };
 
-export const deleteEnrollment = async (token, id) => {
+export const updateEnrollment = async (id, enrollment) => {
   try {
-    const response = await axios.delete(`${base_url}/enrollment/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axiosInstance.put(
+      `${base_url}/enrollment/${id}`,
+      enrollment
+    );
+    return response;
+  } catch (error) {
+    console.log("eerr", error);
+    return error;
+  }
+};
+
+export const deleteEnrollment = async (id) => {
+  try {
+    const response = await axiosInstance.delete(`${base_url}/enrollment/${id}`);
     return response;
   } catch (error) {
     console.log("eerr", error);

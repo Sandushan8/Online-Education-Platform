@@ -1,14 +1,9 @@
 import { base_url } from "../../constants/constant";
-import axios from "axios";
 import axiosInstance from "../axiosConfig/axiosConfig";
 
-export const getCourses = async (token) => {
+export const getCourses = async () => {
   try {
-    const response = await axiosInstance.get(`${base_url}/course`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axiosInstance.get(`${base_url}/course`);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -16,13 +11,9 @@ export const getCourses = async (token) => {
   }
 };
 
-export const addCourse = async (token, course) => {
+export const addCourse = async (course) => {
   try {
-    const response = await axios.post(`${base_url}/course`, course, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axiosInstance.post(`${base_url}/course`, course);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -30,13 +21,12 @@ export const addCourse = async (token, course) => {
   }
 };
 
-export const updateCourse = async (token, id, course) => {
+export const updateCourse = async (id, course) => {
   try {
-    const response = await axios.put(`${base_url}/course/${id}`, course, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axiosInstance.put(
+      `${base_url}/course/${id}`,
+      course
+    );
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -44,13 +34,9 @@ export const updateCourse = async (token, id, course) => {
   }
 };
 
-export const deleteCourse = async (token, id) => {
+export const deleteCourse = async (id) => {
   try {
-    const response = await axios.delete(`${base_url}/course/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axiosInstance.delete(`${base_url}/course/${id}`);
     return response;
   } catch (error) {
     console.log("eerr", error);

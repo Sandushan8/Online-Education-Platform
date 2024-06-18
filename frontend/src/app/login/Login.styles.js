@@ -7,6 +7,10 @@ export const styles = {
     width: "100vw",
     backgroundColor: "lightblue",
   },
+  topic: {
+    fontSize: 64,
+    marginTop: -20,
+  },
   cardContainer: {
     width: "40vw",
     height: "60vh",
@@ -24,6 +28,13 @@ export const styles = {
   form: {
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
     gap: 16,
+  },
+  textField: {
+    width: 300,
+  },
+  loginButton: {
+    width: 300,
   },
 };

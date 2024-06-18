@@ -2,7 +2,7 @@ import { Button, Card, TextField, Typography } from "@mui/material";
 import { styles } from "./Login.styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import "./Login.css";
 export const Login = ({ onSubmit }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +12,7 @@ export const Login = ({ onSubmit }) => {
       <Card>
         <div style={styles.cardContainer}>
           <div style={styles.card}>
-            <h1>Login</h1>
+            <h1 style={styles.topic}>Login</h1>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -25,6 +25,7 @@ export const Login = ({ onSubmit }) => {
                 label="Username"
                 variant="outlined"
                 value={username}
+                style={styles.textField}
                 onChange={(e) => setUsername(e.target.value)}
               />
               <TextField
@@ -32,15 +33,22 @@ export const Login = ({ onSubmit }) => {
                 label="Password"
                 variant="outlined"
                 type="password"
+                style={styles.textField}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Button type="submit" variant="contained">
+              <Button
+                type="submit"
+                variant="contained"
+                style={styles.loginButton}
+              >
                 Login
               </Button>
               <Typography>
                 Don't have an account?{" "}
-                <b onClick={() => navigate("/register")}>Register</b>
+                <b className="login" onClick={() => navigate("/register")}>
+                  Register
+                </b>
               </Typography>
             </form>
           </div>
