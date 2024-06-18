@@ -1,0 +1,5 @@
+p.nav:hover,
+p.nav:active {
+  color: white;
+  cursor: pointer;
+}

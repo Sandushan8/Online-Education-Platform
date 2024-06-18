@@ -32,12 +32,10 @@ const login = async (req, res) => {
       const token = jwt.sign(tokenObj, process.env.JWT_SECRET, {
         expiresIn: "2h",
       });
-      res
-        .status(200)
-        .send({
-          token,
-          user: { username: user.username, role: user.role, uuid: user._id },
-        });
+      res.status(200).send({
+        token,
+        user: { username: user.username, role: user.role, uuid: user._id },
+      });
     }
   } catch (error) {
     res.status(400).send(error);
