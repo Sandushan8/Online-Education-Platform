@@ -31,6 +31,7 @@ export const CoursesContainer = () => {
   const deleteCourseData = async (id) => {
     let res = await deleteCourse(id);
     if (res.status === 200) {
+      alert("Course Deleted Successfully");
       getCourseData();
     }
   };
@@ -45,12 +46,14 @@ export const CoursesContainer = () => {
     if (!course.id) {
       let res = await addCourse(obj);
       if (res && res.data) {
+        alert("Course Added Successfully");
         getCourseData();
         setOption(null);
       }
     } else {
       let res = await updateCourse(course.id, obj);
       if (res && res.data) {
+        alert("Course Updated Successfully");
         getCourseData();
         setOption(null);
       }
@@ -65,6 +68,11 @@ export const CoursesContainer = () => {
       note: "",
     };
     let res = await addEnrollment(obj);
+    if (res && res.data) {
+      alert("Student Enrolled Successfully");
+    } else {
+      alert("Student already enrolled");
+    }
   };
 
   return (

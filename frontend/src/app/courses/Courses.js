@@ -95,6 +95,7 @@ export const Courses = ({
         handleSubmit={() => {
           enrollStudent(courses[current]._id);
         }}
+        title={"Enroll in Course"}
         open={confirm}
         setOpen={setConfirm}
         text={"Are you sure you want to enroll in this course?"}

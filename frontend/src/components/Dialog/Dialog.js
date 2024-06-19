@@ -6,7 +6,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-export default function AlertDialog({ open, setOpen, text, handleSubmit }) {
+export default function AlertDialog({
+  open,
+  setOpen,
+  title,
+  text,
+  handleSubmit,
+}) {
   const handleClose = () => {
     setOpen(false);
   };
@@ -19,9 +25,7 @@ export default function AlertDialog({ open, setOpen, text, handleSubmit }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             {text}

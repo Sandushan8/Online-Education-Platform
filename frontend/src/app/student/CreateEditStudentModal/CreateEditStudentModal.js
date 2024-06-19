@@ -1,13 +1,32 @@
 import { Button, Card, IconButton, Modal, TextField } from "@mui/material";
 import { styles } from "./CreateEditStudentModal.styles";
 import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const CreateEditStudentModal = ({ option, onSubmit, close }) => {
   const [username, setUsername] = useState(option.value.name || "");
   const [password, setPassword] = useState("");
   const [confpassword, setConfPassword] = useState("");
   const [email, setEmail] = useState(option.value.email || "");
+
+  const [error, setError] = useState(false);
+  const [passError, setPassError] = useState(false);
+  useEffect(() => {
+    if (password) {
+      if (password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)) {
+        setPassError(false);
+      } else {
+        setPassError(true);
+      }
+    }
+    if (password && confpassword && password !== confpassword) {
+      setError(true);
+    }
+    if (password === confpassword) {
+      setError(false);
+    }
+  }, [password, confpassword]);
+
   return (
     <Modal open={!!option} style={styles.modal}>
       <>
@@ -47,6 +66,12 @@ export const CreateEditStudentModal = ({ option, onSubmit, close }) => {
               value={password}
               style={styles.textField}
               required
+              error={error || passError}
+              helperText={
+                passError
+                  ? "Password must be longer than 8 characters and contain one number"
+                  : ""
+              }
               onChange={(e) => setPassword(e.target.value)}
             />
             <TextField
@@ -55,6 +80,8 @@ export const CreateEditStudentModal = ({ option, onSubmit, close }) => {
               variant="outlined"
               type="password"
               value={confpassword}
+              error={error}
+              helperText={error ? "Passwords do not match" : ""}
               required
               style={styles.textField}
               onChange={(e) => setConfPassword(e.target.value)}

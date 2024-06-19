@@ -49,6 +49,7 @@ export const StudentContainer = () => {
         };
         let res = await addStudent(studentObj);
         if (res && res.data) {
+          alert("Student Added Successfully");
           getStudentData();
           setOption(null);
         }
@@ -62,6 +63,7 @@ export const StudentContainer = () => {
       };
       let res = await updateStudent(user.id, obj);
       if (res && res.data) {
+        alert("Student Updated Successfully");
         getStudentData();
         setOption(null);
       }

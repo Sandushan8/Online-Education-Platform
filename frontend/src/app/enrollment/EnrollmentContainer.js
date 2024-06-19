@@ -43,9 +43,9 @@ export const EnrollmentContainer = () => {
   };
 
   const deleteEnrollmentData = async (id) => {
-    console.log("id", id);
     let res = await deleteEnrollment(id);
     if (res.status === 200) {
+      alert("Enrollment Deleted Successfully");
       getEnrollmentData();
     }
   };
@@ -61,12 +61,14 @@ export const EnrollmentContainer = () => {
       let res = await addEnrollment(obj);
       console.log("res", res);
       if (res && res.data) {
+        alert("Enrollment Added Successfully");
         getEnrollmentData();
         setOption(null);
       }
     } else {
       let res = await updateEnrollment(enrollment.id, obj);
       if (res && res.data) {
+        alert("Enrollment Updated Successfully");
         getEnrollmentData();
         setOption(null);
       }

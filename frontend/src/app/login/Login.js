@@ -3,7 +3,7 @@ import { styles } from "./Login.styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-export const Login = ({ onSubmit }) => {
+export const Login = ({ onSubmit, error }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -26,6 +26,7 @@ export const Login = ({ onSubmit }) => {
                 variant="outlined"
                 value={username}
                 style={styles.textField}
+                error={error}
                 onChange={(e) => setUsername(e.target.value)}
               />
               <TextField
@@ -35,6 +36,8 @@ export const Login = ({ onSubmit }) => {
                 type="password"
                 style={styles.textField}
                 value={password}
+                error={error}
+                helperText={error ? "Invalid username or password" : ""}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <Button

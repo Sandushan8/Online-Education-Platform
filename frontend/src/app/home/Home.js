@@ -32,13 +32,26 @@ export const Home = () => {
     <div
       style={{
         width: "100vw",
-        height: "100vh",
+        height: "94%",
       }}
     >
+      <h1
+        style={{
+          position: "absolute",
+          top: "40%",
+          left: "20%",
+          textAlign: "center",
+          fontSize: 60,
+          color: "white",
+        }}
+      >
+        Welcome to our Campus! <br /> Explore our Library, Books, and Campus
+        Life.
+      </h1>
       <img
-        src={option[1].image}
+        src={Campus1}
         alt="campus"
-        style={{ objectFit: "contain" }}
+        style={{ width: "100vw", height: "100%", objectFit: "fill" }}
       />
     </div>
   );

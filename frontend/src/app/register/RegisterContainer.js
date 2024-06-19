@@ -30,6 +30,9 @@ export const RegisterContainer = () => {
           })
         );
       });
+      alert("Registration Success");
+    } else {
+      alert("Registration Failed");
     }
   };
   return <Register onSubmit={handleOnSubmit} />;

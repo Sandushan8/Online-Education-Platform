@@ -1,6 +1,6 @@
 import { Button, Card, TextField, Typography } from "@mui/material";
 import { styles } from "./Register.styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
 export const Register = ({ onSubmit }) => {
@@ -8,7 +8,25 @@ export const Register = ({ onSubmit }) => {
   const [password, setPassword] = useState("");
   const [confpassword, setConfPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState(false);
+  const [passError, setPassError] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (password) {
+      if (password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)) {
+        setPassError(false);
+      } else {
+        setPassError(true);
+      }
+    }
+    if (password && confpassword && password !== confpassword) {
+      setError(true);
+    }
+    if (password === confpassword) {
+      setError(false);
+    }
+  }, [password, confpassword]);
   return (
     <div style={styles.register}>
       <Card>
@@ -31,6 +49,7 @@ export const Register = ({ onSubmit }) => {
                 label="Username"
                 variant="outlined"
                 value={username}
+                required
                 style={styles.textField}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -40,6 +59,13 @@ export const Register = ({ onSubmit }) => {
                 variant="outlined"
                 type="password"
                 value={password}
+                required
+                error={error || passError}
+                helperText={
+                  passError
+                    ? "Password must be longer than 8 characters and contain one number"
+                    : ""
+                }
                 style={styles.textField}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -49,6 +75,9 @@ export const Register = ({ onSubmit }) => {
                 variant="outlined"
                 type="password"
                 value={confpassword}
+                error={error}
+                helperText={error ? "Passwords do not match" : ""}
+                required
                 style={styles.textField}
                 onChange={(e) => setConfPassword(e.target.value)}
               />
@@ -58,6 +87,7 @@ export const Register = ({ onSubmit }) => {
                 variant="outlined"
                 type="email"
                 value={email}
+                required
                 style={styles.textField}
                 onChange={(e) => setEmail(e.target.value)}
               />

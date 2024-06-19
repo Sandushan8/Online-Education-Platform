@@ -9,7 +9,7 @@ export const styles = {
   },
   card: {
     width: 400,
-    height: 400,
+    height: 500,
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
