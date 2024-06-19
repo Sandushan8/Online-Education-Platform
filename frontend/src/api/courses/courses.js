@@ -3,7 +3,7 @@ import axiosInstance from "../axiosConfig/axiosConfig";
 
 export const getCourses = async () => {
   try {
-    const response = await axiosInstance.get(`${base_url}/course`);
+    const response = await axiosInstance.get(`/course`);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -13,7 +13,7 @@ export const getCourses = async () => {
 
 export const addCourse = async (course) => {
   try {
-    const response = await axiosInstance.post(`${base_url}/course`, course);
+    const response = await axiosInstance.post(`/course`, course);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -23,10 +23,7 @@ export const addCourse = async (course) => {
 
 export const updateCourse = async (id, course) => {
   try {
-    const response = await axiosInstance.put(
-      `${base_url}/course/${id}`,
-      course
-    );
+    const response = await axiosInstance.put(`/course/${id}`, course);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -36,7 +33,7 @@ export const updateCourse = async (id, course) => {
 
 export const deleteCourse = async (id) => {
   try {
-    const response = await axiosInstance.delete(`${base_url}/course/${id}`);
+    const response = await axiosInstance.delete(`/course/${id}`);
     return response;
   } catch (error) {
     console.log("eerr", error);

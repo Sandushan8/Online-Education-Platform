@@ -3,7 +3,7 @@ import axiosInstance from "../axiosConfig/axiosConfig";
 
 export const getEnrollment = async () => {
   try {
-    const response = await axiosInstance.get(`${base_url}/enrollment`);
+    const response = await axiosInstance.get(`/enrollment`);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -13,10 +13,7 @@ export const getEnrollment = async () => {
 
 export const addEnrollment = async (enrollment) => {
   try {
-    const response = await axiosInstance.post(
-      `${base_url}/enrollment`,
-      enrollment
-    );
+    const response = await axiosInstance.post(`/enrollment`, enrollment);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -26,10 +23,7 @@ export const addEnrollment = async (enrollment) => {
 
 export const updateEnrollment = async (id, enrollment) => {
   try {
-    const response = await axiosInstance.put(
-      `${base_url}/enrollment/${id}`,
-      enrollment
-    );
+    const response = await axiosInstance.put(`/enrollment/${id}`, enrollment);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -39,7 +33,7 @@ export const updateEnrollment = async (id, enrollment) => {
 
 export const deleteEnrollment = async (id) => {
   try {
-    const response = await axiosInstance.delete(`${base_url}/enrollment/${id}`);
+    const response = await axiosInstance.delete(`/enrollment/${id}`);
     return response;
   } catch (error) {
     console.log("eerr", error);

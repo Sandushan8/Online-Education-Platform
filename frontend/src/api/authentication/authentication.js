@@ -3,7 +3,7 @@ import axiosInstance from "../axiosConfig/axiosConfig";
 
 export const login = async ({ name, password }) => {
   try {
-    const response = await axiosInstance.post(`${base_url}/login`, {
+    const response = await axiosInstance.post(`/login`, {
       username: name,
       password,
     });
@@ -16,7 +16,7 @@ export const login = async ({ name, password }) => {
 
 export const register = async ({ name, password }) => {
   try {
-    const response = await axiosInstance.post(`${base_url}/register`, {
+    const response = await axiosInstance.post(`/register`, {
       username: name,
       password,
     });

@@ -3,7 +3,7 @@ import { store } from "../../app/store/store";
 import { onLogoutSuccess } from "../../app/store/authReducer/AuthReducer";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://localhost:4000",
   headers: {
     "Content-Type": "application/json",
   },

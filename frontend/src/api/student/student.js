@@ -3,7 +3,7 @@ import axiosInstance from "../axiosConfig/axiosConfig";
 
 export const getStudents = async () => {
   try {
-    const response = await axiosInstance.get(`${base_url}/student`);
+    const response = await axiosInstance.get(`/student`);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -13,7 +13,7 @@ export const getStudents = async () => {
 
 export const getStudentById = async ({ token, id }) => {
   try {
-    const response = await axiosInstance.get(`${base_url}/student/${id}`, {
+    const response = await axiosInstance.get(`/student/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -27,7 +27,7 @@ export const getStudentById = async ({ token, id }) => {
 
 export const addStudent = async (student) => {
   try {
-    const response = await axiosInstance.post(`${base_url}/student`, student);
+    const response = await axiosInstance.post(`/student`, student);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -37,10 +37,7 @@ export const addStudent = async (student) => {
 
 export const updateStudent = async (id, student) => {
   try {
-    const response = await axiosInstance.put(
-      `${base_url}/student/${id}`,
-      student
-    );
+    const response = await axiosInstance.put(`/student/${id}`, student);
     return response;
   } catch (error) {
     console.log("eerr", error);
@@ -50,7 +47,7 @@ export const updateStudent = async (id, student) => {
 
 export const deleteStudent = async (id) => {
   try {
-    const response = await axiosInstance.delete(`${base_url}/student/${id}`);
+    const response = await axiosInstance.delete(`/student/${id}`);
     return response;
   } catch (error) {
     console.log("eerr", error);
