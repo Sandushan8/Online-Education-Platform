@@ -11,7 +11,7 @@ const addStudent = async (req, res) => {
 };
 const getStudent = async (req, res) => {
   try {
-    const student = await Student.findById(req.params.id);
+    const student = await Student.findOne({ studentId: req.params.id });
     if (!student) {
       return res.status(404).send("Student not found");
     }

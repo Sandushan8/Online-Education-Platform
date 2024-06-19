@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { styles } from "./CreateEditEnrollmentModal.styles";
 import CloseIcon from "@mui/icons-material/Close";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const CreateEditEnrollmentModal = ({
   option,
@@ -22,9 +22,6 @@ export const CreateEditEnrollmentModal = ({
   const [course, setCourse] = useState(option.value.course || "");
   const [note, setNote] = useState(option.value.note || "");
 
-  useEffect(() => {
-    console.log("students", students, courses);
-  }, []);
   return (
     <Modal open={!!option} style={styles.modal}>
       <>

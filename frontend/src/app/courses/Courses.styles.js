@@ -1,3 +1,5 @@
+import { height, width } from "@mui/system";
+
 export const styles = {
   container: {
     display: "flex",
@@ -38,5 +40,36 @@ export const styles = {
     borderRadius: "8px",
     cursor: "pointer",
     alignSelf: "flex-end",
+  },
+  studentContainer: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    height: "90%",
+    backgroundColor: "lightgray",
+    padding: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+  },
+  course: {
+    height: 500,
+    width: 700,
+  },
+  courseContainer: {
+    width: 700,
+    height: 700,
+    display: "flex",
+    flexDirection: "column",
+  },
+  icons: {
+    height: 30,
+    width: 30,
+  },
+  enrollButton: {
+    alignSelf: "center",
+  },
+  courseDetails: {
+    paddingLeft: 20,
   },
 };

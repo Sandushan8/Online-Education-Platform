@@ -8,6 +8,12 @@ const initialState = {
     role: "",
     uuid: "",
   },
+  student: {
+    studentId: "",
+    name: "",
+    email: "",
+    enrolledCourses: [],
+  },
 };
 
 export const authReducer = createSlice({
@@ -28,10 +34,20 @@ export const authReducer = createSlice({
         role: "",
         uuid: "",
       };
+      state.student = {
+        studentId: "",
+        name: "",
+        email: "",
+        enrolledCourses: [],
+      };
+    },
+    onStudentLogin: (state, { payload }) => {
+      state.student = payload.student;
     },
   },
 });
 
-export const { onLoginSuccess, onLogoutSuccess } = authReducer.actions;
+export const { onLoginSuccess, onLogoutSuccess, onStudentLogin } =
+  authReducer.actions;
 
 export default authReducer.reducer;

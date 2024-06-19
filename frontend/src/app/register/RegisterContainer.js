@@ -29,7 +29,6 @@ export const RegisterContainer = () => {
             user: res.data.user,
           })
         );
-        navigate("/course");
       });
     }
   };

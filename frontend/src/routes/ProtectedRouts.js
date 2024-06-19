@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { Home } from "../app/home/Home";
 import { useSelector } from "react-redux";
 import { Layout } from "../app/layout/Layout";
 import { CoursesContainer } from "../app/courses/CoursesContainer";
 import { EnrollmentContainer } from "../app/enrollment/EnrollmentContainer";
 import { StudentContainer } from "../app/student/StudentContainer";
+import { HomeContainer } from "../app/home/HomeContainer";
 
 export const ProtectedRoutes = () => {
   const {
@@ -12,13 +12,13 @@ export const ProtectedRoutes = () => {
   } = useSelector((state) => state.auth);
   return (
     <Routes>
-      {role !== "admin" ? (
+      {role === "admin" ? (
         <>
           <Route
-            path="/home"
+            path="/students"
             element={
               <Layout>
-                <Home />
+                <StudentContainer />
               </Layout>
             }
           ></Route>
@@ -38,20 +38,31 @@ export const ProtectedRoutes = () => {
               </Layout>
             }
           ></Route>
+        </>
+      ) : (
+        <>
           <Route
-            path="/students"
+            path="/home"
             element={
               <Layout>
-                <StudentContainer />
+                <HomeContainer />
+              </Layout>
+            }
+          ></Route>
+          <Route
+            path="/courses"
+            element={
+              <Layout>
+                <CoursesContainer />
               </Layout>
             }
           ></Route>
         </>
-      ) : null}
+      )}
       <Route
         path="*"
         element={
-          <Navigate to={role === "admin" ? "/home" : "/courses"} replace />
+          <Navigate to={role === "student" ? "/home" : "/students"} replace />
         }
       />
     </Routes>

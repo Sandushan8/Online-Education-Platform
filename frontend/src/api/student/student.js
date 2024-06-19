@@ -11,9 +11,13 @@ export const getStudents = async () => {
   }
 };
 
-export const getStudentById = async (id) => {
+export const getStudentById = async ({ token, id }) => {
   try {
-    const response = await axiosInstance.get(`${base_url}/student/${id}`);
+    const response = await axiosInstance.get(`${base_url}/student/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response;
   } catch (error) {
     console.log("eerr", error);

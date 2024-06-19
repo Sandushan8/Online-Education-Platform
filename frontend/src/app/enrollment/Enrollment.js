@@ -30,18 +30,18 @@ export const Enrollment = ({
         </tr>
         {enrollment.map((item) => {
           console.log(
-            "hey" + students?.filter((val) => val._id == item.student)
+            "hey" + students?.filter((val) => val._id === item.student)
           );
           return (
             <tr style={styles.row}>
               <td style={styles.cell}>{item.student}</td>
               <td style={styles.cell}>
-                {students?.find((val) => val._id == item.student)?.name ||
+                {students?.find((val) => val._id === item.student)?.name ||
                   "None"}
               </td>
               <td style={styles.cell}>{item.course}</td>
               <td style={styles.cell}>
-                {courses?.find((val) => val._id == item.course)?.title ||
+                {courses?.find((val) => val._id === item.course)?.title ||
                   "None"}
               </td>
               <td style={styles.cell}>{item.note}</td>

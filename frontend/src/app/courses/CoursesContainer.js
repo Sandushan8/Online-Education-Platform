@@ -8,10 +8,15 @@ import {
 } from "../../api/courses/courses";
 import { NothingHerePage } from "../../components/NothingHerePage/NothingHerePage";
 import { CreateEditCourseModal } from "./CreateEditCourseModal/CreateEditCourseModal";
+import { useSelector } from "react-redux";
+import { addEnrollment } from "../../api/enrollment/enrollment";
 
 export const CoursesContainer = () => {
   const [courses, setCourses] = useState([]);
   const [option, setOption] = useState(null);
+  const {
+    student: { studentId },
+  } = useSelector((state) => state.auth);
   useEffect(() => {
     getCourseData();
   }, []);
@@ -52,6 +57,16 @@ export const CoursesContainer = () => {
     }
   };
 
+  const enrollStudent = async (courseId) => {
+    console.log("courseId", courseId);
+    const obj = {
+      course: courseId,
+      student: studentId,
+      note: "",
+    };
+    let res = await addEnrollment(obj);
+  };
+
   return (
     <>
       {courses.length > 0 ? (
@@ -59,6 +74,7 @@ export const CoursesContainer = () => {
           courses={courses}
           setOption={(option) => setOption(option)}
           deleteCourseData={(id) => deleteCourseData(id)}
+          enrollStudent={(id) => enrollStudent(id)}
         />
       ) : (
         <NothingHerePage
